@@ -70,7 +70,7 @@
   }
   .painel-container li {
     margin: 5px;
-    display: flex;
+    display: table;
     border: 1px solid gray;
     border-radius: 5px;
   }

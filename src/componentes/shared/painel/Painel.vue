@@ -1,9 +1,9 @@
 <template>
     <div class="painel">
-        <h3 class="painel-titulo">
+        <h3 class="painel-titulo" v-on:dblclick="visivel = !visivel">
             {{ titulo }}
         </h3>
-        <div class="painel-conteudo">
+        <div class="painel-conteudo" v-show="visivel">
             <slot></slot>
         </div>
     </div>
@@ -11,7 +11,12 @@
 
 <script>
     export default {
-        props: ['titulo']
+        props: ['titulo'],
+        data() {
+            return {
+                visivel: true
+            }
+        }
     }
 </script>
 
@@ -21,10 +26,12 @@
   }
   .painel {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
   }
+  .painel {
+    width: 200px;
+  }
   .painel-conteudo img {
-    max-width: 200px;
+    width: 100%
   }
 </style>
