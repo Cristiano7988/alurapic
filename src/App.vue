@@ -5,7 +5,7 @@
       type="text"
       placeholder="Filtrar"
       class="filtro"
-      v-on:input="filtro = $event.target.value"
+      @input="filtro = $event.target.value"
     />
     <ul class="painel-container">
       <li v-for="foto of fotosComFiltro">

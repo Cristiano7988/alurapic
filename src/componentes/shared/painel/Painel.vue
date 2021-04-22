@@ -1,6 +1,6 @@
 <template>
     <div class="painel">
-        <h3 class="painel-titulo" v-on:dblclick="visivel = !visivel">
+        <h3 class="painel-titulo" @dblclick="visivel = !visivel">
             {{ titulo }}
         </h3>
         <div class="painel-conteudo" v-show="visivel">
