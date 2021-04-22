@@ -1,13 +1,20 @@
 <template>
-  <div>
+  <div class="container">
     <h1>{{ titulo }}</h1>
-    <ul>
+    <ul class="painel-container">
       <li v-for="foto of fotos">
-        <img
-          :src="foto.url"
-          :alt="foto.title"
-          :title="foto.title"
-        />
+        <div class="painel">
+          <div class="painel-titulo">
+            {{ foto.titulo }}
+          </div>
+          <div class="painel-conteudo">
+            <img
+              :src="foto.url"
+              :alt="foto.title"
+              :title="foto.title"
+            />
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -30,4 +37,29 @@ export default {
 </script>
 
 <style>
+  .container {
+    text-align: center;
+    font-family: -webkit-pictograph;
+  }
+  .painel-container {
+    display: flex;
+    list-style: none;
+    flex-flow: wrap;
+    justify-content: center;
+    padding: unset;
+  }
+  .painel-container li {
+    margin: 5px;
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  .painel {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .painel-conteudo img {
+    max-width: 200px;
+  }
 </style>
