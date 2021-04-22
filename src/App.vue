@@ -8,7 +8,9 @@
       </ul>
     </nav>
     <div class="container">
-      <router-view></router-view>
+      <transition name="pagina">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -26,5 +28,11 @@
   .container {
     text-align: center;
     font-family: -webkit-pictograph;
+  }
+  .pagina-enter, .pagina-leave-active {
+      opacity: 0;
+  }
+  .pagina-enter-active {
+      transition: opacity 1.5s;
   }
 </style>
