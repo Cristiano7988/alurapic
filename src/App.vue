@@ -11,6 +11,7 @@
       <li v-for="foto of fotosComFiltro">
         <meu-painel :titulo="foto.titulo">
           <img
+            class="image"
             :src="foto.url"
             :alt="foto.titulo"
             :title="foto.titulo"
@@ -73,5 +74,8 @@
     display: table;
     border: 1px solid gray;
     border-radius: 5px;
+  }
+  .image {
+    width: 100%;
   }
 </style>
