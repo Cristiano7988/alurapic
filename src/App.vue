@@ -3,37 +3,37 @@
     <h1>{{ titulo }}</h1>
     <ul class="painel-container">
       <li v-for="foto of fotos">
-        <div class="painel">
-          <div class="painel-titulo">
-            {{ foto.titulo }}
-          </div>
-          <div class="painel-conteudo">
-            <img
-              :src="foto.url"
-              :alt="foto.title"
-              :title="foto.title"
-            />
-          </div>
-        </div>
+        <meu-painel :titulo="foto.titulo">
+          <img
+            :src="foto.url"
+            :alt="foto.titulo"
+            :title="foto.titulo"
+          />
+        </meu-painel>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      titulo: "Alurapic",
-      fotos: []
+  import Painel from "./componentes/shared/painel/Painel.vue";
+  
+  export default {
+    components: {
+      'meu-painel': Painel
+    },
+    data() {
+      return {
+        titulo: "Alurapic",
+        fotos: []
+      }
+    },
+    created() {
+      this.$http.get("http://localhost:3000/v1/fotos")
+        .then(r=>r.json())
+        .then(fotos=>this.fotos = fotos, err=>console.log(err))
     }
-  },
-  created() {
-    this.$http.get("http://localhost:3000/v1/fotos")
-      .then(r=>r.json())
-      .then(fotos=>this.fotos = fotos, err=>console.log(err))
   }
-}
 </script>
 
 <style>
@@ -53,13 +53,5 @@ export default {
     display: flex;
     border: 1px solid gray;
     border-radius: 5px;
-  }
-  .painel {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-  .painel-conteudo img {
-    max-width: 200px;
   }
 </style>
