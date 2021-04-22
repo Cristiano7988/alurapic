@@ -15,7 +15,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+  *:not(h3) {
+      box-shadow: 0px 0px 10px silver;
+  }
   .painel {
     display: flex;
     justify-content: space-between;
