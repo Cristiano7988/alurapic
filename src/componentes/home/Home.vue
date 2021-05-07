@@ -11,7 +11,13 @@
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
           <minha-imagem :url="foto.url" :titulo="foto.titulo"></minha-imagem>
-          <meu-botao tipo="button" rotulo="REMOVER" />
+          <meu-botao
+            tipo="button"
+            rotulo="REMOVER"
+            @botaoAtivado="remove(foto)"
+            :confirmacao="true"
+            estilo="perigo"
+          />
         </meu-painel>
       </li>
     </ul>
@@ -49,6 +55,11 @@
         } else {
           return this.fotos;
         }
+      }
+    },
+    methods: {
+      remove(foto) {
+        alert('ok')
       }
     }
   }
