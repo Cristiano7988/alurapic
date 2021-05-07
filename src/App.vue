@@ -1,12 +1,6 @@
 <template>
   <div>
-    <nav>
-      <ul>
-        <li v-for="route in routes">
-          <router-link :to="route.path">{{ route.titulo }}</router-link>
-        </li>
-      </ul>
-    </nav>
+    <meu-menu :rotas="routes" />
     <div class="container">
       <transition name="pagina">
         <router-view></router-view>
@@ -16,7 +10,11 @@
 </template>
 <script>
   import { routes } from "./routes";
+  import Menu from './componentes/shared/menu/Menu';
   export default {
+    components: {
+      'meu-menu': Menu
+    },
     data() {
       return {
         routes
