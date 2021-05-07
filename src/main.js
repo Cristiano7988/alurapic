@@ -3,6 +3,8 @@ import App from './App.vue'
 import VueResource from 'vue-resource' // modulo para requisições ajax
 import VueRouter from 'vue-router'
 import { routes } from './routes'
+import './directives/Transform'
+
 Vue.use(VueResource) //registra o módulo importado
 Vue.use(VueRouter)
 

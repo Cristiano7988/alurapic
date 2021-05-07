@@ -10,7 +10,7 @@
     <ul class="painel-container">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
-          <minha-imagem :url="foto.url" :titulo="foto.titulo"></minha-imagem>
+          <minha-imagem v-meu-transform:scale.animate.reverse="1.5" :url="foto.url" :titulo="foto.titulo"></minha-imagem>
           <meu-botao
             tipo="button"
             rotulo="REMOVER"

@@ -48,4 +48,7 @@
   .painel-fade-enter-active, .painel-fade-leave-active {
       transition: opacity .5s;
   }
+  .painel-conteudo {
+      overflow: hidden;
+  }
 </style>
