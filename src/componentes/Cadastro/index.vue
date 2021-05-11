@@ -49,6 +49,7 @@
 import ImagemResponsiva from '../shared/ImagemResponsiva'
 import Botao from '../shared/Botao';
 import Foto from '../../domain/Foto';
+import FotoService from '../../domain/Foto/FotoService';
 
 export default {
   components: { ImagemResponsiva, Botao },
@@ -57,10 +58,13 @@ export default {
       foto: new Foto()
     }
   },
+  created () {
+    this.service = new FotoService(this.$resource);
+  },
   methods: {
     grava() {
-      return this.$http
-        .post('v1/fotos', this.foto)
+      return this.service
+        .cadastra(this.foto)
         .then(
             ()=> this.foto = new Foto(),
             (err) => console.log(err)

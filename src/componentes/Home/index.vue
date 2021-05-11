@@ -29,6 +29,7 @@
   import Painel from "../shared/Painel";
   import ImagemResponsiva from "../shared/ImagemResponsiva";
   import Botao from "../shared/Botao";
+  import FotoService from "../../domain/Foto/FotoService";
 
   export default {
     components: { Painel, ImagemResponsiva, Botao },
@@ -41,8 +42,10 @@
       }
     },
     created() {
-      this.$http.get("v1/fotos")
-        .then(r=>r.json())
+      this.service = new FotoService(this.$resource);
+      
+      this.service
+        .lista()
         .then(fotos=>this.fotos = fotos, err=>console.log(err))
     },
     computed: {
@@ -57,8 +60,8 @@
     },
     methods: {
       remove(foto) {
-        return this.$http
-          .delete(`v1/fotos/${foto._id}`)
+        return this.service
+          .apaga(foto._id)
           .then(
             () => {
               const indice = this.fotos.indexOf(foto);
