@@ -37,7 +37,7 @@
 
       <div class="centralizado">
         <Botao rotulo="GRAVAR" tipo="submit"/>
-        <router-link to="/"><Botao rotulo="VOLTAR" tipo="button"/></router-link>
+        <router-link :to="{ name: 'home' }"><Botao rotulo="VOLTAR" tipo="button"/></router-link>
       </div>
 
     </form>

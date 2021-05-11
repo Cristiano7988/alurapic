@@ -15,7 +15,7 @@
     components: { Menu },
     data() {
       return {
-        routes
+        routes: routes.filter(route=> route.menu)
       }
     }
   }
