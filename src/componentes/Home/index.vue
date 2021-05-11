@@ -41,7 +41,7 @@
       }
     },
     created() {
-      this.$http.get("http://localhost:3000/v1/fotos")
+      this.$http.get("v1/fotos")
         .then(r=>r.json())
         .then(fotos=>this.fotos = fotos, err=>console.log(err))
     },
@@ -58,7 +58,7 @@
     methods: {
       remove(foto) {
         return this.$http
-          .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+          .delete(`v1/fotos/${foto._id}`)
           .then(
             () => {
               const indice = this.fotos.indexOf(foto);
