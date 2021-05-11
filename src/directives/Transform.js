@@ -10,7 +10,7 @@ Vue.directive('meu-transform', {
             const incremento = value || 90;
             let efeito;
 
-            if(!binding.arg || binding.arg.rotate) {
+            if(!binding.arg || binding.arg == 'rotate') {
                 current = reverse
                     ? current - incremento 
                     : current + incremento;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <meu-menu :rotas="routes" />
+    <Menu :rotas="routes" />
     <div class="container">
       <transition name="pagina">
         <router-view></router-view>
@@ -10,11 +10,9 @@
 </template>
 <script>
   import { routes } from "./routes";
-  import Menu from './componentes/shared/menu/Menu';
+  import Menu from './componentes/shared/Menu';
   export default {
-    components: {
-      'meu-menu': Menu
-    },
+    components: { Menu },
     data() {
       return {
         routes

@@ -39,10 +39,10 @@ export default {
 <style scoped>
     .botao {
         display: inline-block;
-        padding: 10px;
+        padding: 5px;
         border-radius: 3px;
         margin: 10px;
-        font-size: 1.2em;
+        font-size: 0.7em;
     }
 
     .botao-perigo {

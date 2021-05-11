@@ -9,32 +9,28 @@
     />
     <ul class="painel-container">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
-        <meu-painel :titulo="foto.titulo">
-          <minha-imagem v-meu-transform:scale.animate.reverse="1.5" :url="foto.url" :titulo="foto.titulo"></minha-imagem>
-          <meu-botao
+        <Painel :titulo="foto.titulo">
+          <ImagemResponsiva :url="foto.url" :titulo="foto.titulo" />
+          <Botao
             tipo="button"
             rotulo="REMOVER"
             @botaoAtivado="remove(foto)"
             :confirmacao="true"
             estilo="perigo"
           />
-        </meu-painel>
+        </Painel>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import Painel from "../shared/painel/Painel.vue";
-  import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
-  import Botao from "../shared/botao/Botao";
-  
+  import Painel from "../shared/Painel";
+  import ImagemResponsiva from "../shared/ImagemResponsiva";
+  import Botao from "../shared/Botao";
+
   export default {
-    components: {
-      'meu-painel': Painel,
-      'minha-imagem': ImagemResponsiva,
-      'meu-botao': Botao
-    },
+    components: { Painel, ImagemResponsiva, Botao },
     data() {
       return {
         titulo: "Alurapic",
@@ -49,12 +45,12 @@
     },
     computed: {
       fotosComFiltro() {
-        if(this.filtro) {
-          const exp = new RegExp(this.filtro.trim(), 'i');
-          return this.fotos.filter(foto=> exp.test(foto.titulo));
-        } else {
-          return this.fotos;
-        }
+        const exp = new RegExp(this.filtro.trim(), 'i');
+        
+        return this.filtro
+          ? this.fotos.filter(foto=> exp.test(foto.titulo))
+          : this.fotos;
+        
       }
     },
     methods: {
