@@ -1,23 +1,38 @@
 <template>
     <div>
     <h1 class="centralizado">Cadastro</h1>
-    <h2 class="centralizado"></h2>
+    <h2 class="centralizado">{{ foto.titulo }}</h2>
 
-    <form>
+    <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off">
+        <!-- V-MODEL executa: -->
+        <!-- @input="foto.titulo = $event.target.value"
+        :value="foto.titulo" -->
+        <input
+            id="titulo"
+            autocomplete="off"
+            v-model="foto.titulo"
+        />
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off">
-        <ImagemResponsiva/>
+        <input
+            id="url"
+            autocomplete="off"
+            v-model.lazy="foto.url"
+        />
+        <ImagemResponsiva v-show="foto.url" :url="foto.url" :titulo="foto.titulo" />
       </div>
 
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
-        <textarea id="descricao" autocomplete="off"></textarea>
+        <textarea
+            id="descricao"
+            autocomplete="off"
+            v-model="foto.descricao"
+        />
       </div>
 
       <div class="centralizado">
@@ -33,9 +48,25 @@
 
 import ImagemResponsiva from '../shared/ImagemResponsiva'
 import Botao from '../shared/Botao';
+import Foto from '../../domain/Foto';
 
 export default {
-  components: { ImagemResponsiva, Botao }
+  components: { ImagemResponsiva, Botao },
+  data () {
+    return {
+      foto: new Foto()
+    }
+  },
+  methods: {
+    grava() {
+      return this.$http
+        .post('http://localhost:3000/v1/fotos', this.foto)
+        .then(
+            ()=> this.foto = new Foto(),
+            (err) => console.log(err)
+        )
+    }
+  }
 }
 
 </script>
