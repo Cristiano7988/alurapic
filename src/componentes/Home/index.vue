@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{ titulo }}</h1>
+    <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
     <input
       type="text"
       placeholder="Filtrar"
@@ -35,7 +36,8 @@
       return {
         titulo: "Alurapic",
         fotos: [],
-        filtro: ''
+        filtro: '',
+        mensagem: ''
       }
     },
     created() {
@@ -55,7 +57,15 @@
     },
     methods: {
       remove(foto) {
-        alert('ok')
+        return this.$http
+          .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+          .then(
+            () => this.mensagem = 'Foto removida com sucesso!',
+            err => {
+              console.log(err)
+              this.mensagem = 'Não foi possível remover a foto'
+            }
+          )
       }
     }
   }
