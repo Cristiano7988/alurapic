@@ -52,7 +52,7 @@
       
       this.service
         .lista()
-        .then(fotos=>this.fotos = fotos, err=>console.log(err))
+        .then(fotos=>this.fotos = fotos, err=> this.mensagem = err.message)
     },
     computed: {
       fotosComFiltro() {
@@ -74,8 +74,7 @@
               this.fotos.splice(indice, 1);
               this.mensagem = 'Foto removida com sucesso!';
             }, err => {
-              console.log(err);
-              this.mensagem = 'Não foi possível remover a foto';
+              this.mensagem = err.message;
             }
           )
       }
