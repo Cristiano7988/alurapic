@@ -1,7 +1,11 @@
 <template>
     <div>
     <h1 class="centralizado">Cadastro</h1>
-    <h2 class="centralizado">{{ foto.titulo }}</h2>
+    <h2 class="centralizado">
+      <span v-if="this.id">Alterando</span>
+      <span v-else>Incluindo</span>
+      <span>{{ foto.titulo }}</span>
+    </h2>
 
     <form @submit.prevent="grava()">
       <div class="controle">
@@ -55,18 +59,27 @@ export default {
   components: { ImagemResponsiva, Botao },
   data () {
     return {
-      foto: new Foto()
+      foto: new Foto(),
+      id: this.$route.params.id
     }
   },
   created () {
     this.service = new FotoService(this.$resource);
+    if(this.id) {
+      this.service
+        .busca(this.id)
+        .then(foto=> this.foto = foto)
+    }
   },
   methods: {
     grava() {
       return this.service
         .cadastra(this.foto)
         .then(
-            ()=> this.foto = new Foto(),
+            ()=> {
+              if(this.id) this.$router.push({ name: 'home' })
+              this.foto = new Foto()
+            },
             (err) => console.log(err)
         )
     }

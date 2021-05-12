@@ -12,6 +12,12 @@
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <Painel :titulo="foto.titulo">
           <ImagemResponsiva :url="foto.url" :titulo="foto.titulo" />
+          <router-link :to="{ name: 'altera', params: { id: foto._id } }">
+            <Botao
+              tipo="buttom"
+              rotulo="ALTERAR"
+            />
+          </router-link>
           <Botao
             tipo="button"
             rotulo="REMOVER"
