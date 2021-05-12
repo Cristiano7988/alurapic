@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import { routes } from './routes'
 import './directives/Transform'
 import VeeValidate from 'vee-validate';
+import pt_BR from 'vee-validate/dist/locale/pt_BR';
 
 Vue.use(VueResource) //registra o módulo importado
 Vue.http.options.root = 'http://localhost:3000'
@@ -15,7 +16,14 @@ const router = new VueRouter({
   mode: 'history'
 });
 
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+  locale: 'pt_BR',
+  dictionary: {
+    pt_BR: {
+      messages: pt_BR
+    }
+  }
+});
 
 new Vue({
   el: '#app',

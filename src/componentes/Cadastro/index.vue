@@ -30,7 +30,7 @@
         <input
             id="url"
             autocomplete="off"
-            v-model.lazy="foto.url"
+            v-model="foto.url"
             name="url"
             v-validate
             data-vv-rules="required"
