@@ -1,4 +1,4 @@
-import Cadastro from "./componentes/Cadastro";
+const Cadastro = () => System.import("./componentes/Cadastro").then(m=>m.default);
 import Home from "./componentes/Home";
 export const routes = [
     {path: "/", name: 'home', component: Home, titulo: "Home", menu: true},
