@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import { routes } from './routes'
 import './directives/Transform'
 import VeeValidate from 'vee-validate';
-import pt_BR from 'vee-validate/dist/locale/pt_BR';
+import pt_BR from './pt_BR';
 
 Vue.use(VueResource) //registra o módulo importado
 Vue.http.options.root = 'http://localhost:3000'
